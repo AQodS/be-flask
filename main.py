@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, request
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -28,6 +28,21 @@ def profile_name(username, _route):
 @app.route('/htmlescape/<code>')
 def html_escape(code):
     return escape(code)
+
+@app.route("/routewithoutslash")
+def route_without_slash():
+    return "<h1>This route does not end with a slash</h1><hr><p>so if you put a slash at the end, it will show 404 not found!.</p>"
+
+@app.route("/routewithslash/")
+def route_with_slash():
+    return "<h1>This route ends with a slash</h1><hr><p>No matter you put or not put a slash at the end, it will redirect to this route.</p>"
+
+@app.route("/tryrequest/", methods=["GET", "POST"])
+def tryrequest():
+    if request.method == "GET":
+        return "<h1>GET request received!</h1>" +  request.args.get("name")
+    elif request.method == "POST":
+        return "<h1>POST request received!</h1>" + request.form["name"]
 
 if __name__ == "__main__":
     app.run(debug=True)
