@@ -1,4 +1,5 @@
 from flask import Flask
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -23,6 +24,10 @@ def profile_name(username, _route):
         return f"<h1>Profile Home Page of {username}</h1>"
     elif _route == "profile":
         return f"<h1>Profile Page of {username}</h1>"
+
+@app.route('/htmlescape/<code>')
+def html_escape(code):
+    return escape(code)
 
 if __name__ == "__main__":
     app.run(debug=True)
