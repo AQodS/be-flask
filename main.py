@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 from markupsafe import escape
 
 app = Flask(__name__)
@@ -6,7 +6,10 @@ app = Flask(__name__)
 # static route
 @app.route("/")
 def index():
-    return "<h1>Hello, World!<h1>"
+    hobbies = ["coding", "reading", "gaming"]
+    bio = {"name": "klonggrok", "age": 20, "address": "123 Main St"}
+    return render_template("index.html", name="klonggrok", age=20, hobbies=hobbies, bio=bio) 
+    # index.html must exists in the templates folder
 
 @app.route("/about")
 def about():

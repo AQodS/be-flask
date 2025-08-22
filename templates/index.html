@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DRender Template</title>
+</head>
+
+<body>
+  <h1>Home</h1>
+  <p>Hello, my name is {{ name }}! I'm {{ age }} years old. My hobbies are: {{ hobbies[0] }}</p> <!--get list item-->
+
+  <!-- loop to get all items in list -->
+  {% for hobby in hobbies %}
+  <li>{{ hobby }}</li>
+  {% endfor %}
+
+  <!-- get dict value -->
+  <p>My bio: {{ bio.name }}, {{ bio.age }} years old, lives at {{ bio.address }}</p>
+
+  <!-- loop to get all dict values -->
+  {% for key, value in bio.items() %}
+  <li>{{ key }}: {{ value }}</li>
+  {% endfor %}
+</body>
+
+</html>
